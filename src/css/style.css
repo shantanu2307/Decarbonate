@@ -1,0 +1,12 @@
+body {
+    padding-top: 0.4em;
+}
+
+.app {
+    margin-top: 3.5em;
+    background-color: white;
+}
+
+.navbar {
+    height: 3.5em;
+}
