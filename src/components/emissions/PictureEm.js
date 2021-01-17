@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { useAuth } from './../../firebase/auth';
 import axios from 'axios';
 
 export default function PictureEm() {
@@ -51,28 +52,51 @@ export default function PictureEm() {
             .catch(err => console.log(err));
     }
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
+    const { currentUser } = useAuth();
+
+    useEffect(() => {
+        if (currentUser && currentUser.uid) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+    function saveEm() {
+        let data = {
+            uid: currentUser.uid,
+            waste: carbon,
+            total: Number(carbon)
+        }
+        axios.post('http://localhost:8080/daily', data)
+            .then(response => console.log(response))
+            .catch(err => console.log('error --> ', err));
+    }
+
     return (
         <div className='transparent'>
             <table>
-                <tr>
-                    <td>
-                        <form>
-                            <input type="file"  accept="image/*" name="image" id="file" onInput={imgUpload} />
-                            <br/>
-                            <p>{src}</p>
-                            <br/>
-                            <canvas id='canvas' height={0} width={0}></canvas>
-                            <br/>
-                            <button type="button" onClick={calcEm} className='submit-btn'>Find Emission</button>              
-                        </form>
-                    </td>
-                    <td style={{width:'30%',}}>
-                        <h4>Your emissions</h4>
-                        <p>Object: {waste}</p>
-                        <h6>Carbon emission: {carbon} kgs</h6>
-                        <button className='submit-btn'>Save emissions</button>
-                    </td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>
+                            <form>
+                                <input type="file"  accept="image/*" name="image" id="file" onInput={imgUpload} />
+                                <br/>
+                                <p>{src}</p>
+                                <br/>
+                                <canvas id='canvas' height={0} width={0}></canvas>
+                                <br/>
+                                <button type="button" onClick={calcEm} className='submit-btn'>Find Emission</button>              
+                            </form>
+                        </td>
+                        <td style={{width:'30%',}}>
+                            <h4>Your emissions</h4>
+                            <p>Object: {waste}</p>
+                            <h6>Carbon emission: {carbon} kgs</h6>
+                            {isLoggedIn && <button className='submit-btn' onClick={saveEm}>Save emissions</button>}
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     )

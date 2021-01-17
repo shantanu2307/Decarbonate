@@ -18,7 +18,7 @@ export default function Login() {
       var data = await login(emailRef.current.value, passwordRef.current.value);
       console.log(data.user.uid);
       // let url = '/user/' + String(data.user.uid);
-      history.push("/user");
+      history.push("/user/daily");
       
     } catch {
       setError("Failed to Sign In");

@@ -6,8 +6,9 @@ import PassChange from './PassChange'
 export default function User(props) {    
         return (
             <Router>
-                <Route path='/user' exact component={Profile} />
-                <Route path='/user/changePassword' component={PassChange} />
+                <Route path='/user/changePassword' exact component={PassChange} />
+                <Route path='/user' component={Profile} />
+                
             </Router>
         )
     

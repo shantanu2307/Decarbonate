@@ -2,6 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {Link, BrowserRouter as Router, Route} from 'react-router-dom';
 import { useAuth } from "./../../firebase/auth";
 import axios from 'axios';
+import './../../css/profile.css'
+import Daily from './Daily';
+import Monthly from './Monthly';
+
+
 
 export default function Profile() {   
 
@@ -26,11 +31,29 @@ export default function Profile() {
     }
 
     return (
-        <div>
-            <h1>Profile</h1>
-            <p>Email: {email}</p>
-            <p>Username: {username}</p>
-            <p>Location: {location}</p>
-        </div>
+        <table className='mainbody'>
+            <tbody>
+                <tr>
+                    <td style={{width:'20%'}}>
+                        <div>
+                            <h1>Profile</h1>
+                            <p>Email: {email}</p>
+                            <p>Username: {username}</p>
+                            <p>Location: {location}</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div className='tabs'>
+                            <Link to='/user/daily'><button className='button'>Daily</button></Link>
+                            <Link to='/user/monthly'><button className='button'>Monthly</button></Link>
+                        </div>
+
+                        <Route path='/user/daily' component={Daily} />
+                        <Route path='/user/monthly' component={Monthly} />
+                    
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     );
 };

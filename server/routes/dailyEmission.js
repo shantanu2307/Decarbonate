@@ -4,17 +4,21 @@ let dailyEmission = require('../models/dailyEmission.model');
 const cors = require('cors');
 
 router.use(cors());
-router.get('/daily',async(req,res)=>
+
+router.post('/getdaily',async(req,res)=>
 {
     try{
-     const Id = req.body.uId;
-     const todayEmission = await dailyEmission.findOne({uId:Id})
+     const Id = req.body.uid;
+     console.log(Id);
+     const todayEmission = await dailyEmission.find({uid:Id});
+     console.log(todayEmission);
      res.send(todayEmission)
     }
     catch(e){
         console.log(e)
     }
 });
+
 router.post('/daily',async(req,res)=>
 {console.log('hi')
     try{
@@ -23,16 +27,18 @@ router.post('/daily',async(req,res)=>
         const p=d.getDate()
         console.log(p)
        obj = {
-          uId : help.uId,
+          uid : help.uid,
           water: help.water,
           waste: help.waste,
           commute: help.commute,
           electronicDevices : help.electronicDevices,
+          gas: help.gas,
           total: help.total,
           date: p
       }
-      const todayEmission = await dailyEmission.findOne({date:p,uId:help.uId})
-      console.log(todayEmission.date)
+      console.log(obj);
+      const todayEmission = await dailyEmission.findOne({date:p,uid:help.uid})
+    //   console.log(todayEmission.date)
       if(todayEmission){
           if( obj.water && obj.water!=NaN )
           todayEmission.water +=obj.water;
