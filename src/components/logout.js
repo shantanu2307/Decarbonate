@@ -10,7 +10,7 @@ export default function Logout() {
         let show = document.getElementsByClassName('loggedout');
         let hide = document.getElementsByClassName('loggedin');
         for (var i of show) {
-            i.style['display'] = '';
+            i.style['display'] = 'inline';
         }
         for (var i of hide) {
             i.style['display'] = 'none';

@@ -90,7 +90,7 @@ export default function Login(props) {
       let show = document.getElementsByClassName('loggedin');
       let hide = document.getElementsByClassName('loggedout');
       for (var i of show) {
-        i.style['display'] = '';
+        i.style['display'] = 'inline';
       }
       for (var i of hide) {
         i.style['display'] = 'none';

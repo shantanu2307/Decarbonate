@@ -9,3 +9,7 @@ body {
 .navbar {
     height: 3.5em;
 }
+
+.loggedin {
+    display: none;
+}
