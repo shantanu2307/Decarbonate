@@ -3,6 +3,7 @@ const { model } = require('mongoose');
 let comments = require('../models/comments.model');
 let chats = require('../models/chats.model')
 const cors = require('cors');
+const { findByIdAndDelete } = require('../models/comments.model');
 
 router.use(cors());
 router.post('/getcomments',async(req,res)=>{
@@ -14,6 +15,16 @@ router.post('/getcomments',async(req,res)=>{
      console.log(e)
     }
 })
+router.delete('/comment',async(req,res)=>{
+    try{
+        const x= findByIdAndDelete(req.body.cid);
+        res.send("commnet deleted")
+    }
+    catch(e){
+        console.log(e);
+    }
+})
+
 router.post('/comment',async(req,res)=>
 {
     try{
