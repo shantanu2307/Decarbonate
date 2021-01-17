@@ -26,13 +26,13 @@ router.post('/daily',async(req,res)=>
         const help = req.body;
         const d=new Date
         const dayy=d.getDate()
-        const monthh=d.getMonth()
+        const monthh=d.getMonth()+1
         console.log(dayy)
         console.log(monthh)
         const t={day:dayy, month:monthh}
         console.log(t)
        const obj = {
-          uId : help.uId,
+          uid : help.uid,
           water: help.water,
           waste: help.waste,
           commute: help.commute,
@@ -43,7 +43,7 @@ router.post('/daily',async(req,res)=>
                month: monthh}
       };
       const obj2={
-        uId : help.uId,
+        uid : help.uid,
         water: help.water,
         waste: help.waste,
         commute: help.commute,
@@ -52,13 +52,15 @@ router.post('/daily',async(req,res)=>
         month:monthh
       }
       console.log(obj.date.month)
-      const todayEmission = await dailyEmission.findOne({date:obj.date,uId:help.uId})
-      const thisMonthEmission = await monthlyEmission.findOne({month:obj.date.month,uId:help.uId})
+      const todayEmission = await dailyEmission.findOne({date:obj.date,uid:help.uid})
+      const thisMonthEmission = await monthlyEmission.findOne({month:obj.date.month,uid:help.uid})
       console.log(thisMonthEmission)
       if(thisMonthEmission!=null)
       {
         if( obj.water && obj.water!=NaN )
         thisMonthEmission.water +=obj.water;
+        if( obj.gas && obj.gas!=NaN )
+        thisMonthEmission.gas +=obj.gas;
         if( obj.waste && obj.waste!=NaN )
         thisMonthEmission.waste +=obj.waste;
         if(obj.commute && obj.commute!=NaN )

@@ -9,6 +9,7 @@ export default function Daily() {
 
     const { currentUser } = useAuth();
 
+    var month = (new Date()).getMonth() + 1;
    
     useEffect(() => {
         if (currentUser && currentUser.uid) {
@@ -21,7 +22,8 @@ export default function Daily() {
                     }
                     console.log(response.data);
                     for (var i of response.data) {
-                        graphdata[i.date][1] += i.total;
+                        if (i.date.month == month)
+                            graphdata[i.date.day][1] += i.total;
                     }
                     console.log(graphdata);
                     setChartData(graphdata);

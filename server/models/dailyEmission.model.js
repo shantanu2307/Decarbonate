@@ -10,11 +10,11 @@ const dailySchema = new Schema({
     },
     date:{
         day:{
-     type: Number,//Day of the month
-     default: 0},
-     month:{
-         type:Number
-     }
+        type: Number,//Day of the month
+        default: 0},
+        month:{
+            type:Number
+        }
     },
     water: {
         type: Number,

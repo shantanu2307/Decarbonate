@@ -22,7 +22,7 @@ export default function Monthly() {
                     }
                     console.log(response.data);
                     for (var i of response.data) {
-                        graphdata[i.date][1] += i.total;
+                        graphdata[i.month][1] += i.total;
                     }
                     console.log(graphdata);
                     setChartData(graphdata);
