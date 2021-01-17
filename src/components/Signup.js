@@ -35,7 +35,16 @@ export default function Signup() {
             await axios.post('http://localhost:8080/user/add', {user: user})
               .then(response => {
                 console.log('User added ' + response);
+                let show = document.getElementsByClassName('loggedin');
+                let hide = document.getElementsByClassName('loggedout');
+                for (var i of show) {
+                  i.style['display'] = '';
+                }
+                for (var i of hide) {
+                  i.style['display'] = 'none';
+                }
                 history.push("/user/daily");
+                
               }).catch(err => {
                 console.log(err);
               })

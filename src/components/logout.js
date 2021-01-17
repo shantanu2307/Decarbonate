@@ -7,6 +7,14 @@ export default function Logout() {
     const history = useHistory();
     async function loggingout() {
         await logout();
+        let show = document.getElementsByClassName('loggedout');
+        let hide = document.getElementsByClassName('loggedin');
+        for (var i of show) {
+            i.style['display'] = '';
+        }
+        for (var i of hide) {
+            i.style['display'] = 'none';
+        }
         history.push("/");
     }
     useEffect(() => {

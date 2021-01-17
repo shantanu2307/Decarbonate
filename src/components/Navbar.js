@@ -4,21 +4,10 @@ import {Link} from 'react-router-dom';
 import logo from '../images/logo_transparent.png'
 import { useAuth } from './../firebase/auth';
 
-export default function Navbar() {  
+export default function Navbar(props) {  
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const user = useAuth();
+    
 
-    useEffect(() => {
-        function handleStatusChange(user) {
-            if (user && user.currentUser && user.currentUser.uid) {
-                setIsLoggedIn(true);
-            } else {
-                setIsLoggedIn(true);
-            }
-        }
-        
-    }, []);
 
     return (
         <div>
@@ -30,12 +19,12 @@ export default function Navbar() {
 
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-                        {!isLoggedIn && <li className="nav-item"><Link to='/user/daily' className='nav-link'>Profile</Link></li>}
+                        {<li className="nav-item loggedin"><Link to='/user/daily' className='nav-link'>Profile</Link></li>}
                         <li className="nav-item"><Link to='/emission/daily' className='nav-link'>Emission</Link></li>
-                        {!isLoggedIn && <li className='nav-item'><Link to='/logout' className='nav-link'>Logout</Link></li>}
-                        {!isLoggedIn && <li className="nav-item"><Link to='/signup' className='nav-link'>Signup</Link></li>}
-                        {!isLoggedIn && <li className="nav-item"><Link to='/login' className='nav-link'>Login</Link></li>}
-                        {!isLoggedIn && <li className="nav-item"><Link to='/posts' className='nav-link'>Hackntip</Link></li>}
+                        {<li className="nav-item loggedin"><Link to='/posts' className='nav-link'>Hackntip</Link></li>}
+                        {<li className='nav-item loggedin'><Link to='/logout' className='nav-link'>Logout</Link></li>}
+                        {<li className="nav-item loggedout"><Link to='/signup' className='nav-link'>Signup</Link></li>}
+                        {<li className="nav-item loggedout"><Link to='/login' className='nav-link'>Login</Link></li>}
                     </ul>
                 </div>
             </nav>

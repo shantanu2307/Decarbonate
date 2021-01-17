@@ -3,7 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../firebase/auth";
 import { Link, useHistory } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
   const emailRef = useRef();
   const passwordRef = useRef();
   const { login } = useAuth();
@@ -18,6 +18,14 @@ export default function Login() {
       var data = await login(emailRef.current.value, passwordRef.current.value);
       console.log(data.user.uid);
       // let url = '/user/' + String(data.user.uid);
+      let show = document.getElementsByClassName('loggedin');
+      let hide = document.getElementsByClassName('loggedout');
+      for (var i of show) {
+        i.style['display'] = '';
+      }
+      for (var i of hide) {
+        i.style['display'] = 'none';
+      }
       history.push("/user/daily");
       
     } catch {
