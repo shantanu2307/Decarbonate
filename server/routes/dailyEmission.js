@@ -32,7 +32,7 @@ router.post('/daily',async(req,res)=>
         const t={day:dayy, month:monthh}
         console.log(t)
        const obj = {
-          uId : help.uId,
+          uid : help.uid,
           water: help.water,
           waste: help.waste,
           commute: help.commute,
@@ -43,7 +43,7 @@ router.post('/daily',async(req,res)=>
                month: monthh}
       };
       const obj2={
-        uId : help.uId,
+        uid : help.uid,
         water: help.water,
         waste: help.waste,
         commute: help.commute,
@@ -52,11 +52,11 @@ router.post('/daily',async(req,res)=>
         month:monthh
       }
       console.log(obj.date.month)
-      const todayEmission = await dailyEmission.findOne({date:obj.date,uId:help.uId})
-      const thisMonthEmission = await monthlyEmission.findOne({month:obj.date.month,uId:help.uId})
+      const todayEmission = await dailyEmission.findOne({date:obj.date,uid:help.uid})
+      const thisMonthEmission = await monthlyEmission.findOne({month:obj.date.month,uid:help.uid})
       console.log(thisMonthEmission)
-      if(thisMonthEmission!=null)
-      {
+      if(thisMonthEmission)
+      {console.log("where")
         if( obj.water && obj.water!=NaN )
         thisMonthEmission.water +=obj.water;
         if( obj.waste && obj.waste!=NaN )
@@ -74,6 +74,7 @@ router.post('/daily',async(req,res)=>
         console.log('ahead');
       }
       else{
+        console.log("mayor")
         const newMonthEmission = await new monthlyEmission(obj2)
         await newMonthEmission.save()
         console.log(newMonthEmission)
@@ -94,8 +95,9 @@ router.post('/daily',async(req,res)=>
 
           if(obj.total && obj.total!=NaN)
           todayEmission.total +=obj.total;
-      
+      console.log("why")
           await todayEmission.save();
+          res.send("Same day, more emission")
       }
       else{
           console.log("here")

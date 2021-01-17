@@ -19,19 +19,20 @@ router.post('/getmonthly',async(req,res)=>
 
 router.post('/monthly',async(req,res)=>
 {
-    console.log('hi')
+    
     try{
+        console.log('hi')
     const help=req.body
     const d=new Date
     const monthh=d.getMonth()
     let obj={
-        uId:help.uId,
+        uid:help.uid,
         gas:help.gas,
         flight:help.flight,
         electricity: help.electricity,
         month:monthh
     }
-    const newMonth = monthly.findOne({month:obj.month,uId:obj.uId})
+    const newMonth = monthly.findOne({month:obj.month,uid:obj.uid})
     if(newMonth)
     {
       if( obj.gas && obj.gas!=NaN )
