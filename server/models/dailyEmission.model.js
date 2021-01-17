@@ -9,8 +9,12 @@ const dailySchema = new Schema({
         unique: true
     },
     date:{
+        day:{
      type: Number,//Day of the month
-     default: 0
+     default: 0},
+     month:{
+         type:Number
+     }
     },
     water: {
         type: Number,

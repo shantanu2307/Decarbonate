@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { model } = require('mongoose');
 let dailyEmission = require('../models/dailyEmission.model');
+let monthlyEmission = require('../models/monthlyEmission.model')
 const cors = require('cors');
 
 router.use(cors());
@@ -16,24 +17,66 @@ router.get('/daily',async(req,res)=>
     }
 });
 router.post('/daily',async(req,res)=>
-{console.log('hi')
+{
     try{
         const help = req.body;
         const d=new Date
-        const p=d.getDate()
-        console.log(p)
-       obj = {
+        const dayy=d.getDate()
+        const monthh=d.getMonth()
+        console.log(dayy)
+        console.log(monthh)
+        const t={day:dayy, month:monthh}
+        console.log(t)
+       const obj = {
           uId : help.uId,
           water: help.water,
           waste: help.waste,
           commute: help.commute,
           electronicDevices : help.electronicDevices,
           total: help.total,
-          date: p
+          date: {day:dayy,
+               month: monthh}
+      };
+      const obj2={
+        uId : help.uId,
+        water: help.water,
+        waste: help.waste,
+        commute: help.commute,
+        electronicDevices : help.electronicDevices,
+        total: help.total,
+        month:monthh
       }
-      const todayEmission = await dailyEmission.findOne({date:p,uId:help.uId})
-      console.log(todayEmission.date)
+      console.log(obj.date.month)
+      const todayEmission = await dailyEmission.findOne({date:obj.date,uId:help.uId})
+      const thisMonthEmission = await monthlyEmission.findOne({month:obj.date.month,uId:help.uId})
+      console.log(thisMonthEmission)
+      if(thisMonthEmission!=null)
+      {
+        if( obj.water && obj.water!=NaN )
+        thisMonthEmission.water +=obj.water;
+        if( obj.waste && obj.waste!=NaN )
+        thisMonthEmission.waste +=obj.waste;
+        if(obj.commute && obj.commute!=NaN )
+        thisMonthEmission.commute +=obj.commute;
+       
+        if(obj.electronicDevices && obj.electronicDevices!=NaN)
+        thisMonthEmission.electronicDevices +=obj.electronicDevices;
+
+        if(obj.total && obj.total!=NaN)
+        thisMonthEmission.total +=obj.total;
+    
+        await thisMonthEmission.save();
+        console.log('ahead');
+      }
+      else{
+        const newMonthEmission = await new monthlyEmission(obj2)
+        await newMonthEmission.save()
+        console.log(newMonthEmission)
+        
+      }
+      
       if(todayEmission){
+          console.log("there")
           if( obj.water && obj.water!=NaN )
           todayEmission.water +=obj.water;
           if( obj.waste && obj.waste!=NaN )
@@ -48,9 +91,9 @@ router.post('/daily',async(req,res)=>
           todayEmission.total +=obj.total;
       
           await todayEmission.save();
-          res.send("saved in today")
       }
       else{
+          console.log("here")
           const newEmission = await new dailyEmission(obj)
           await newEmission.save()
           res.send("New day, new emission")

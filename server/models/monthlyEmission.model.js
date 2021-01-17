@@ -8,9 +8,28 @@ const monthlySchema = new Schema({
         required: true,
         unique: true
     },
-    date:{
-     type: Date,
-     default: Date.now
+    month:{
+     type: Number
+    },
+    water: {
+        type: Number,
+        default:0,
+        min:0
+    },
+    waste:{
+        type:Number,
+        default:0,
+        min:0
+    },
+    commute:{
+        type:Number,
+        default:0,
+        min:0
+    },
+    electronicDevices:{
+        type: Number,
+        default:0,
+        min:0
     },
     flights: {
         type: Number,
