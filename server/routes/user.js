@@ -11,21 +11,29 @@ router.post('/user/add', (req, res) => {
     let user = req.body.user;
     console.log(user);
     let data = req.body;
-    User.findOne({uid: user.uid}, (err, result) => {
-        if (err) {
-            res.status(400).send(`Error: ${err}`);
-        } else if (result) {
-            res.status(402).send('User already exists');
-        } else {
-            let newUser = new User(user);
-            newUser.save((err) => {
-                if (err) {
-                    res.status(402).send('Error in saving');
-                } else {
-                    res.status(200).send('OK');
-                }
-            });
+    // User.findOne({uid: user.uid}, (err, result) => {
+    //     if (err) {
+    //         res.status(400).send(`Error: ${err}`);
+    //     } else if (result) {
+    //         res.status(402).send('User already exists');
+    //     } else {
+    //         let newUser = new User(user);
+    //         newUser.save((err) => {
+    //             if (err) {
+    //                 res.status(402).send('Error in saving');
+    //             } else {
+    //                 res.status(200).send('OK');
+    //             }
+    //         });
             
+    //     }
+    // });
+    let newUser = new User(user);
+    newUser.save((err) => {
+        if (err) {
+            res.status(402).send('Error in creating user');
+        } else {
+            res.status(200).send('OK');
         }
     });
 });

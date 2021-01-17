@@ -13,6 +13,7 @@ export default function Signup() {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+    
     async function sendData(e) {
         e.preventDefault();
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
@@ -38,7 +39,7 @@ export default function Signup() {
                 console.log(err);
               })
           }
-          history.push("/login");
+          history.push("/user");
         } catch(e) {
             console.log(e)
           setError("Failed to create an account");
