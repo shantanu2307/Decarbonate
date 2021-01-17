@@ -35,7 +35,7 @@ export default function Signup() {
             await axios.post('http://localhost:8080/user/add', {user: user})
               .then(response => {
                 console.log('User added ' + response);
-                history.push("/user");
+                history.push("/user/daily");
               }).catch(err => {
                 console.log(err);
               })

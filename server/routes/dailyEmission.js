@@ -5,17 +5,21 @@ let monthlyEmission = require('../models/monthlyEmission.model')
 const cors = require('cors');
 
 router.use(cors());
-router.get('/daily',async(req,res)=>
+
+router.post('/getdaily',async(req,res)=>
 {
     try{
-     const Id = req.body.uId;
-     const todayEmission = await dailyEmission.findOne({uId:Id})
+     const Id = req.body.uid;
+     console.log(Id);
+     const todayEmission = await dailyEmission.find({uid:Id});
+     console.log(todayEmission);
      res.send(todayEmission)
     }
     catch(e){
         console.log(e)
     }
 });
+
 router.post('/daily',async(req,res)=>
 {
     try{
@@ -33,6 +37,7 @@ router.post('/daily',async(req,res)=>
           waste: help.waste,
           commute: help.commute,
           electronicDevices : help.electronicDevices,
+          gas: help.gas,
           total: help.total,
           date: {day:dayy,
                month: monthh}

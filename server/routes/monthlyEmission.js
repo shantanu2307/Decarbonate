@@ -1,12 +1,25 @@
 const router = require('express').Router();
 const { model } = require('mongoose');
-let mothly = require('../models/monthlyEmission.model');
+let monthlyEmission = require('../models/monthlyEmission.model');
 const cors = require('cors');
 
 router.use(cors());
 
+router.post('/getmonthly',async(req,res)=>
+{
+    try{
+     const Id = req.body.uid;
+     const todayEmission = await monthlyEmission.find({uid:Id})
+     res.send(todayEmission)
+    }
+    catch(e){
+        console.log(e)
+    }
+});
+
 router.post('/monthly',async(req,res)=>
 {
+    console.log('hi')
     try{
     const help=req.body
     const d=new Date
@@ -44,4 +57,4 @@ console.log(e)
     }
 })
 
-module.exports = router
+module.exports = router;

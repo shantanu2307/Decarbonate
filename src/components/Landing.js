@@ -5,7 +5,7 @@ import '../css/landing.css'
 export default function Landing() {
     return (
         <>
-            <div class="bg"></div>
+            <div className="bg"></div>
         </>
     );
 };

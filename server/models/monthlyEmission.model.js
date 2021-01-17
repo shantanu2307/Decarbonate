@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 //No need to store emailid or password, would be handled by firebase
 const monthlySchema = new Schema({
-    uId: {//uid  of user in mongodb
-        type: Schema.Types.ObjectId,
+    uid: {//uid  of user in mongodb
+        type: String,
         ref:'user',
         required: true,
         unique: true
@@ -37,11 +37,6 @@ const monthlySchema = new Schema({
         min:0
     },
     electricity:{
-        type:Number,
-        default:0,
-        min:0
-    },
-    gas:{
         type:Number,
         default:0,
         min:0

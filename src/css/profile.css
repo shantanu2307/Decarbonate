@@ -1,0 +1,10 @@
+.mainbody {
+    width: 90%;
+    background-color: rgb(168, 204, 168);
+    margin: 5em auto 5em auto;
+}
+
+td {
+    padding: 2rem;
+    border: 2px solid black;
+}
