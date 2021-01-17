@@ -9,20 +9,33 @@ const dailySchema = new Schema({
         unique: true
     },
     date:{
-     type: Date,
-     default: Date.now
+     type: Number,//Day of the month
+     default: Date.now.getDate
     },
     water: {
-        type: String,
+        type: Number,
+        default:0,
+        min:0
     },
-    watse:{
-        type:String,
+    waste:{
+        type:Number,
+        default:0,
+        min:0
     },
     commute:{
-        type:String
+        type:Number,
+        default:0,
+        min:0
     },
     electronicDevices:{
-        type: String
+        type: Number,
+        default:0,
+        min:0
+    },
+    total:{
+        type: Number,
+        default:0,
+        min:0
     }
 });
 
