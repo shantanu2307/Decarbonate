@@ -32,14 +32,14 @@ export default function Signup() {
               location: locationRef.current.value
             };
             console.log(user);
-            await axios.post('/user/add', {user: user})
+            await axios.post('http://localhost:8080/user/add', {user: user})
               .then(response => {
                 console.log('User added ' + response);
+                history.push("/user");
               }).catch(err => {
                 console.log(err);
               })
           }
-          history.push("/user");
         } catch(e) {
             console.log(e)
           setError("Failed to create an account");
