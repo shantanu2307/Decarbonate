@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 //No need to store emailid or password, would be handled by firebase
-const chatsSchema = new Schema({
+const commentsSchema = new Schema({
     uid: {//uid  of user in mongodb
         type: String,
         ref:'user',
         required: true,
-        unique: true
     },
     cid: {//chat id 
         type: Schema.Types.ObjectId,
@@ -24,5 +23,5 @@ const chatsSchema = new Schema({
     }
 });
 
-const Chats = mongoose.model('chats', chatsSchema);
-module.exports = Chats;
+const Comment = mongoose.model('comments', commentsSchema);
+module.exports = Comment;

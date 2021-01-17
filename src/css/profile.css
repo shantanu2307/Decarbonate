@@ -4,7 +4,7 @@
     margin: 5em auto 5em auto;
 }
 
-td {
+.mainbody td {
     padding: 2rem;
     border: 2px solid black;
 }

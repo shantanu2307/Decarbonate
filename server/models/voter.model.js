@@ -3,14 +3,16 @@ const Schema = mongoose.Schema
 const voterSchema= new Schema( {
         cid:{//chat id
                 type: Schema.Types.ObjectId,
-                ref:'chats'
+                ref:'chats',
+                required: true,
         },
-        voterid:{
-                type:Schema.Types.ObjectId,
-                ref:'user'
+        uid:{
+                type:String,
+                ref:'user',
+                required: true
         }
 }
         );
-        const voter = mongoose.model('Voter',voterSchema);
-        module.exports = voter
+        const Voter = mongoose.model('Voter',voterSchema);
+        module.exports = Voter
     

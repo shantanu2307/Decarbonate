@@ -6,6 +6,8 @@ const cors = require('cors');
 const userRoute = require("./server/routes/user");
 const dailyEmissionRouter = require("./server/routes/dailyEmission");
 const monthlyEmissionRouter = require("./server/routes/monthlyEmission");
+const commentsRouter = require("./server/routes/comments");
+const chatsRouter = require("./server/routes/chats");
 require("dotenv").config();
 
 const app = express();
@@ -19,6 +21,8 @@ app.use(bodyParser.urlencoded({limit: '100mb', extended: true}));
 app.use(userRoute);
 app.use(dailyEmissionRouter);
 app.use(monthlyEmissionRouter);
+app.use(chatsRouter);
+app.use(commentsRouter);
 app.use(cors());
 
 mongoose.connect(uri, {

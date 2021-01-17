@@ -6,7 +6,6 @@ const chatsSchema = new Schema({
         type: String,
         ref:'user',
         required: true,
-        unique: true
     },
     date:{
      type: Date,

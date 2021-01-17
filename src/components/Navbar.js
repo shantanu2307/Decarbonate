@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+// import { use } from '../../server/routes/user';
 import logo from '../images/logo_transparent.png'
 import { useAuth } from './../firebase/auth';
 
@@ -8,7 +9,16 @@ export default function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const user = useAuth();
 
-
+    useEffect(() => {
+        function handleStatusChange(user) {
+            if (user && user.currentUser && user.currentUser.uid) {
+                setIsLoggedIn(true);
+            } else {
+                setIsLoggedIn(true);
+            }
+        }
+        
+    }, []);
 
     return (
         <div>
@@ -25,6 +35,7 @@ export default function Navbar() {
                         {!isLoggedIn && <li className='nav-item'><Link to='/logout' className='nav-link'>Logout</Link></li>}
                         {!isLoggedIn && <li className="nav-item"><Link to='/signup' className='nav-link'>Signup</Link></li>}
                         {!isLoggedIn && <li className="nav-item"><Link to='/login' className='nav-link'>Login</Link></li>}
+                        {!isLoggedIn && <li className="nav-item"><Link to='/posts' className='nav-link'>Hackntip</Link></li>}
                     </ul>
                 </div>
             </nav>
