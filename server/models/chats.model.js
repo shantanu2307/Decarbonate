@@ -17,8 +17,8 @@ const chatsSchema = new Schema({
         required: true
     },
     votes:{
-        type: Number,
-        default: 0
+        type:Number,
+        default:0
     }
 });
 

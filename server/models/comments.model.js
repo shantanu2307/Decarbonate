@@ -8,7 +8,7 @@ const chatsSchema = new Schema({
         required: true,
         unique: true
     },
-    cId: {//chat id 
+    cid: {//chat id 
         type: Schema.Types.ObjectId,
         ref:'chats',
         required: true,
