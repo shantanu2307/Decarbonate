@@ -37,7 +37,6 @@ router.post('/daily',async(req,res)=>
           waste: help.waste,
           commute: help.commute,
           electronicDevices : help.electronicDevices,
-          gas: help.gas,
           total: help.total,
           date: {day:dayy,
                month: monthh}
@@ -59,8 +58,6 @@ router.post('/daily',async(req,res)=>
       {
         if( obj.water && obj.water!=NaN )
         thisMonthEmission.water +=obj.water;
-        if( obj.gas && obj.gas!=NaN )
-        thisMonthEmission.gas +=obj.gas;
         if( obj.waste && obj.waste!=NaN )
         thisMonthEmission.waste +=obj.waste;
         if(obj.commute && obj.commute!=NaN )

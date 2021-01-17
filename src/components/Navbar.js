@@ -6,14 +6,9 @@ import { useAuth } from './../firebase/auth';
 export default function Navbar() {  
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    
-    // const { currentUser } = useAuth();
+    const user = useAuth();
 
-    // useEffect(() => {
-    //     if (currentUser && currentUser.uid) {
-    //         setIsLoggedIn(true);
-    //     }
-    // }, []);
+
 
     return (
         <div>
@@ -25,9 +20,9 @@ export default function Navbar() {
 
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-                        {isLoggedIn && <li className="nav-item"><Link to='/user/daily' className='nav-link'>Profile</Link></li>}
+                        {!isLoggedIn && <li className="nav-item"><Link to='/user/daily' className='nav-link'>Profile</Link></li>}
                         <li className="nav-item"><Link to='/emission/daily' className='nav-link'>Emission</Link></li>
-                        {isLoggedIn && <li className='nav-item'><Link to='/logout' className='nav-link'>Logout</Link></li>}
+                        {!isLoggedIn && <li className='nav-item'><Link to='/logout' className='nav-link'>Logout</Link></li>}
                         {!isLoggedIn && <li className="nav-item"><Link to='/signup' className='nav-link'>Signup</Link></li>}
                         {!isLoggedIn && <li className="nav-item"><Link to='/login' className='nav-link'>Login</Link></li>}
                     </ul>

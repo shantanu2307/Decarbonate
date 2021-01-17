@@ -21,11 +21,6 @@ const dailySchema = new Schema({
         default:0,
         min:0
     },
-    gas: {
-        type: Number,
-        default:0,
-        min:0
-    },
     waste:{
         type:Number,
         default:0,

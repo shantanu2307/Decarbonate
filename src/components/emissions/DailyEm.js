@@ -16,8 +16,7 @@ export default function DailyEm() {
     const [gsearch, setGsearch] = useState(0);
     const [edeviceEm, setEdeviceEm] = useState(0);
 
-    const [lpg, setLpg] = useState(0);
-    const[gasEm, setGasEm] = useState(0);
+    
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     
@@ -45,9 +44,7 @@ export default function DailyEm() {
         setEdeviceEm(0.0002 * gsearch);
     }, [gsearch]);
 
-    useEffect(() => {
-        setGasEm(1.77 * lpg);
-    }, [lpg]);
+    
 
     function saveEm() {
         let data = {
@@ -55,8 +52,7 @@ export default function DailyEm() {
             water: waterEm,
             commute: commuteEm,
             electronicDevices: edeviceEm,
-            gas: gasEm,
-            total: (Number(waterEm) + Number(commuteEm) + Number(edeviceEm) + Number(gasEm))
+            total: (Number(waterEm) + Number(commuteEm) + Number(edeviceEm))
         }
         axios.post('http://localhost:8080/daily', data)
             .then(response => console.log(response))
@@ -94,10 +90,6 @@ export default function DailyEm() {
                             <input type='number' min={0} onInput={e => setVal(setGsearch, e.target.value)} />
                             <br/>
 
-                            <h4>Gas</h4>
-                            <label>LPG used in L </label>
-                            <input type='number' min={0} onInput={e => setVal(setLpg, e.target.value)} />
-                            <br/>
                         </form>
                         </td>
 
@@ -106,8 +98,7 @@ export default function DailyEm() {
                             <p>Water: {waterEm} kgs</p>
                             <p>Commute: {commuteEm} kgs</p>
                             <p>Electronic Devices: {edeviceEm} kgs</p>
-                            <p>gasEm: {gasEm} kgs</p>
-                            <h6>Total: {waterEm + commuteEm + edeviceEm + gasEm} kgs</h6>
+                            <h6>Total: {waterEm + commuteEm + edeviceEm} kgs</h6>
                             {isLoggedIn && <button className='submit-btn' onClick={saveEm}>Save emissions</button>}
                         </td>
                     </tr>

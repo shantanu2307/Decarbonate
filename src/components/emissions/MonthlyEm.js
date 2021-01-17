@@ -10,6 +10,9 @@ export default function MonthlyEm() {
     const [peopleCount, setPeopleCount] = useState(1);
     const [elecEm, setElecEm] = useState(0);
 
+    const [lpg, setLpg] = useState(0);
+    const[gasEm, setGasEm] = useState(0);
+
     function setVal(callback, val) {
         callback(Number(val));
     }
@@ -31,12 +34,17 @@ export default function MonthlyEm() {
         setElecEm((0.9 * electricity) / peopleCount);
     }, [electricity, peopleCount]);
 
+    useEffect(() => {
+        setGasEm(1.77 * lpg / peopleCount);
+    }, [lpg]);
+
     function saveEm() {
         let data = {
             uid: currentUser.uid,
             flights: flightEm,
             electricity: elecEm,
-            total: (Number(flightEm) + Number(elecEm))
+            gas: gasEm,
+            total: (Number(flightEm) + Number(elecEm) + Number(gasEm))
         };
         console.log(data);
         axios.post('http://localhost:8080/monthly', data)
@@ -63,6 +71,10 @@ export default function MonthlyEm() {
                             <label>Electricity used in kWh </label>
                             <input type='number' min={0} onChange={e => setVal(setElectricity, e.target.value)} />
                             <br/>
+                            <h4>Gas</h4>
+                            <label>LPG used in L </label>
+                            <input type='number' min={0} onInput={e => setVal(setLpg, e.target.value)} />
+                            <br/>
                         </form>
                         </td>
 
@@ -70,7 +82,8 @@ export default function MonthlyEm() {
                             <h4>Your emissions</h4>
                             <p>Flights: {flightEm} kgs</p>
                             <p>Electricity: {elecEm} kgs</p>
-                            <h6>Total: {flightEm + elecEm} kgs</h6>
+                            <p>gasEm: {gasEm} kgs</p>
+                            <h6>Total: {flightEm + elecEm + gasEm} kgs</h6>
                             {isLoggedIn && <button className='submit-btn' onClick={saveEm}>Save emissions</button>}
                         </td>
                     </tr>

@@ -7,6 +7,7 @@ import User from './components/user/User';
 import Navbar from './components/Navbar';
 import Emission from './components/emissions/Emission';
 import Login from './components/login';
+import Logout from './components/logout';
 import PrivateRoute from "./firebase/PrivateRoute"
 import './css/style.css';
 
@@ -19,6 +20,7 @@ function App() {
         <AuthProvider>    
           <Switch> 
            <Route exact path='/' component={Landing} />
+           <Route path='/logout' component={Logout} />
            <Route path='/signup' component={Signup} />
            <Route path='/emission' component={Emission} />
            <PrivateRoute path = '/user' component={User} />
