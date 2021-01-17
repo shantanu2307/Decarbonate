@@ -38,6 +38,7 @@ export default function MonthlyEm() {
             electricity: elecEm,
             total: (Number(flightEm) + Number(elecEm))
         };
+        console.log(data);
         axios.post('http://localhost:8080/monthly', data)
             .then(response => console.log(response))
             .catch(err => console.log('error --> ', err));

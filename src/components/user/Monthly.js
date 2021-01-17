@@ -40,7 +40,7 @@ export default function Monthly() {
                 loader={<div>Loading Chart</div>}
                 data={chartData}
                 options={{
-                title: 'Monhtly Carbon Emission',
+                title: 'Monthly Carbon Emission',
                 chartArea: { width: '70%' },
                 hAxis: {
                     title: 'Month',

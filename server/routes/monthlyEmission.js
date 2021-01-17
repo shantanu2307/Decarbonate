@@ -19,29 +19,32 @@ router.post('/getmonthly',async(req,res)=>
 
 router.post('/monthly',async(req,res)=>
 {
-    console.log('hi')
+    
     try{
+        console.log('hi')
     const help=req.body
     const d=new Date
-    const monthh=d.getMonth()+1
+    const monthh=d.getMonth()+1;
     let obj={
         uid:help.uid,
-        flight:help.flight,
-        electricity: help.electricity,
+        gas:help.gas,
+        flights:Number(help.flights),
+        electricity: Number(help.electricity),
+        total: help.total,
         month:monthh
     }
-    const newMonth = monthlyEmission.findOne({month:obj.month,uid:obj.uid})
-    console.log(newMonth);
-    if(newMonth!=null)
+    console.log(obj);
+    const newMonth =await  monthlyEmission.findOne({month:obj.month,uid:obj.uid})
+    if(newMonth)
     {
       if( obj.electricity && obj.electricity!=NaN )
-      newMonth.electrcity +=obj.electricity;
+      newMonth.electricity +=obj.electricity;
       if(obj.flights && obj.flights!=NaN )
       newMonth.flights +=obj.flights;
       if(obj.total && obj.total!=NaN)
       newMonth.total +=obj.total;
-  
-      await newMonth.save()
+        console.log(newMonth)
+      await newMonth.save();
       res.send("more emission for this month")
     }
     else{
