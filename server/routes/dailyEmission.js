@@ -19,6 +19,9 @@ router.post('/daily',async(req,res)=>
 {console.log('hi')
     try{
         const help = req.body;
+        const d=new Date
+        const p=d.getDate()
+        console.log(p)
        obj = {
           uId : help.uId,
           water: help.water,
@@ -26,9 +29,10 @@ router.post('/daily',async(req,res)=>
           commute: help.commute,
           electronicDevices : help.electronicDevices,
           total: help.total,
-          date: Date.now.getDate
+          date: p
       }
-      const todayEmission = await dailyEmission.findOne({date:help.date,uId:help.uId})
+      const todayEmission = await dailyEmission.findOne({date:p,uId:help.uId})
+      console.log(todayEmission.date)
       if(todayEmission){
           if( obj.water && obj.water!=NaN )
           todayEmission.water +=obj.water;
