@@ -13,13 +13,24 @@ const monthlySchema = new Schema({
      default: Date.now
     },
     flights: {
-        type: String,
+        type: Number,
+        default:0,
+        min:0
     },
     electricity:{
-        type:String,
+        type:Number,
+        default:0,
+        min:0
     },
     gas:{
-        type:String
+        type:Number,
+        default:0,
+        min:0
+    },
+    total:{
+        type: Number,
+        default:0,
+        min:0
     }
 });
 

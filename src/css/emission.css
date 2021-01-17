@@ -39,6 +39,7 @@ body {
     background-color: rgb(18, 117, 18);
     height: 2.7em;
     border-radius: 10px 10px 0 0;
+    margin:2em;
 }
 
 .button:focus {

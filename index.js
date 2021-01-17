@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const userRoute = require("./server/routes/user");
+const dailyEmissionRouter = require("./server/routes/dailyEmission");
 require("dotenv").config();
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(morgan("tiny"));
 app.use(bodyParser.json({limit: '100mb'}));
 app.use(bodyParser.urlencoded({limit: '100mb', extended: true}));
 app.use(userRoute);
+app.use(dailyEmissionRouter)
 app.use(cors());
 
 mongoose.connect(uri, {
