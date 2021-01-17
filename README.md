@@ -3,6 +3,10 @@ Our Project name is DECARBONATE
 This is the link for the drive containing ppt and project video[DECARBONATE DRIVE](https://drive.google.com/drive/folders/1-uqXM4gkZabDD35C7Fr3Ggbjw0BvKwPZ?usp=sharing)  
 
 # Procedure to start the functioning model
+Make sure that you have numpy, tensorflow, npm installed
+Press npm i to install all the reauired modules
+Then run *nodemon* on one terminal and *npm start* on other
+The web page would open and you can experience the features
 
 # Getting Started with Create React App
 
