@@ -95,6 +95,7 @@ router.post('/daily',async(req,res)=>
           todayEmission.total +=obj.total;
       
           await todayEmission.save();
+          res.send("same day, more emission")
       }
       else{
           console.log("here")
