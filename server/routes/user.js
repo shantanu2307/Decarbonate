@@ -7,20 +7,18 @@ const {PythonShell} = require('python-shell');
 
 router.use(cors());
 
-router.post('/user/add', (req, res) => {
-    let user = req.body.user;
-    console.log(user);
-    let data = req.body;
-    let newUser = new User(user);
-    newUser.save((err) => {
-        if (err) {
-            console.log('error in saving');
-            res.status(402).send('Error in creating user');
-        } else {
-            console.log('user created')
-            res.status(200).send('OK');
-        }
-    });
+router.post('/user/add',async (req, res) => {
+    try{
+        console.log(req.body)
+     const newUser = await new User(req.body.user);
+     await newUser.save();
+     res.send("User formed")
+    }
+    catch(e)
+    {
+console.log(e);
+res.send("error in saving!")
+    }
 });
 
 router.post('/user/get', (req, res) => {
