@@ -1,5 +1,21 @@
-# Link for ppt and video
-Our Project name is DECARBONATE
+# DECARBONATE
+This is a web app made to calculate a users carbon 👣 and help them regulate their carbon emissions.
+
+We have a page for simple emission calculator, With daily and monthly categories.
+Daily once a for frequent activities monthly
+
+
+Signup and login page
+
+On the profile page we can view the report of the data that was submitted on admission calculator page
+
+Under speech we have added the functionality where we can upload a picture and the picture would be classified into the 16 most common waste item in our database and it's every value of carbon footprint will be shown this was achieved by building a convolutional neural network using tensorflow muse transfer learning and image augmentation technique to make a lakh of data and the carbon emission of the object in the picture uploaded will be added to daily emissions on profile-page.
+
+We have also added a chatting platform on this website for people to discuss tips and ideas over how to reduce carbon emissions with the feature of upvote on each post.
+
+
+## Link for ppt and video
+
 This is the link for the drive containing ppt and project video[DECARBONATE DRIVE](https://drive.google.com/drive/folders/1-uqXM4gkZabDD35C7Fr3Ggbjw0BvKwPZ?usp=sharing)  
 
 # Procedure to start the functioning model
