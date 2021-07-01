@@ -1,17 +1,37 @@
 # DECARBONATE
-This is a web app made to calculate a users carbon 👣 and help them regulate their carbon emissions.
+This is a web app made for users to calculate their carbon-footprint👣 and help them regulate their carbon emissions.
 
-We have a page for simple emission calculator, With daily and monthly categories.
-Daily once a for frequent activities monthly
+<img width="800"  src="https://user-images.githubusercontent.com/62062797/124162742-6ea5d280-dabc-11eb-9f02-f6dd91800405.png">
 
 
-Signup and login page
+We have a page for simple emission calculator with a daily and monthly category, where daily is for frequent 
+activities and monthly is to record non-frequent activities.
 
-On the profile page we can view the report of the data that was submitted on admission calculator page
+<img width="800" src="https://user-images.githubusercontent.com/62062797/124162447-11aa1c80-dabc-11eb-9224-3ace48608cb8.png">
 
-Under speech we have added the functionality where we can upload a picture and the picture would be classified into the 16 most common waste item in our database and it's every value of carbon footprint will be shown this was achieved by building a convolutional neural network using tensorflow muse transfer learning and image augmentation technique to make a lakh of data and the carbon emission of the object in the picture uploaded will be added to daily emissions on profile-page.
 
-We have also added a chatting platform on this website for people to discuss tips and ideas over how to reduce carbon emissions with the feature of upvote on each post.
+A user can signup and login into the page:
+
+<img width="800" src="https://user-images.githubusercontent.com/62062797/124163503-44a0e000-dabd-11eb-996f-a16d8b851fd8.PNG">
+
+
+On the profile page we can view the report of the data that was submitted on emissions calculator page.
+
+<img width="800" src="https://user-images.githubusercontent.com/62062797/124163395-34890080-dabd-11eb-9b41-0507efd25abe.png">
+
+
+We have also added the functionality where we can upload a picture and the picture would be classified into the 16 most 
+common waste item in our database and it's every value of carbon footprint will be shown this was achieved by building a 
+convolutional neural network using tensorflow muse transfer learning and image augmentation technique to make a lakh of 
+data and the carbon emission of the object in the picture uploaded will be added to daily emissions on profile-page.
+
+<img width="800" src="https://user-images.githubusercontent.com/62062797/124163355-2935d500-dabd-11eb-985d-33135c282ccb.png">
+
+
+We have also added a chatting platform on this website for people to discuss tips and ideas over how to reduce
+carbon emissions with the feature of upvote 👍 on each post.
+
+<img width="960" src="https://user-images.githubusercontent.com/62062797/124163676-6d28da00-dabd-11eb-999c-885c37da5a29.png">
 
 
 ## Link for ppt and video
