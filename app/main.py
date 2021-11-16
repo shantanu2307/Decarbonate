@@ -56,11 +56,18 @@ def main(image,height, width):
 
 @app.route("/", methods=["GET", "POST"])
 def getPrice():
-    print("Hi")
+    cat_dict = {
+		  "metal" : 170.20,
+		  "plastic" : 1.46,
+		  "trash" : 108.86,
+		  "glass" : 323.00,
+		  "paper" : 4.82,
+		  "cardboard" : 28.40,
+	  }
     query = request.get_json()
-    # print(query)
     image=query['img']
     ans = main(image,query['height'],query['width'])
     List = []
     List.append(ans)
+    List.append(cat_dict[ans])
     return json.dumps(List)

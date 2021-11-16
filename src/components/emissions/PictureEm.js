@@ -44,8 +44,7 @@ export default function PictureEm() {
         let data = { img: imgData, height: canvas.height, width: canvas.width };
         console.log(data);
         const res = await axios.post('http://localhost:5000/', data);
-        console.log(res.data[0]);
-        // setCarbon(res.data.data.carbon);
+        setCarbon(res.data[1]);
         setWaste(res.data[0]);
     }
 
@@ -89,7 +88,7 @@ export default function PictureEm() {
                         <td style={{ width: '30%', }}>
                             <h4>Your emissions</h4>
                             <p>Object: {waste}</p>
-                            <h6>Carbon emission: {carbon} kgs</h6>
+                            <h6>Carbon emission: {carbon} grams</h6>
                             {isLoggedIn && <button className='submit-btn' onClick={saveEm}>Save emissions</button>}
                         </td>
                     </tr>
