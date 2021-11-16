@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "app",
+      name: "express-app",
       script: "./index.js",
       instances: "max",
       env: {
