@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from './../../firebase/auth';
 import axios from 'axios';
 
 export default function PictureEm() {
-    
+
     const [src, setSrc] = useState('');
     const [waste, setWaste] = useState('');
     const [carbon, setCarbon] = useState(0);
@@ -11,7 +11,7 @@ export default function PictureEm() {
     function imgUpload(event) {
         try {
             setSrc(URL.createObjectURL(event.target.files[0]));
-        } catch(err) {
+        } catch (err) {
             console.log(err);
         }
         try {
@@ -20,7 +20,7 @@ export default function PictureEm() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             var img = new Image();
 
-            img.onload = function() {
+            img.onload = function () {
                 var height = img.height;
                 var width = img.width;
                 canvas.height = height;
@@ -29,31 +29,28 @@ export default function PictureEm() {
             }
 
             img.src = URL.createObjectURL(event.target.files[0]);
-            
-        } catch(err) {
+
+        } catch (err) {
             console.log(err);
         }
-        
+
     }
 
-    function calcEm() {
-        var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-        var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    async function calcEm() {
+        var canvas = await document.getElementById('canvas');
+        var ctx = await canvas.getContext('2d');
+        var imgData = await ctx.getImageData(0, 0, canvas.width, canvas.height).data;
         console.log(imgData);
-        let data = {img: imgData, height: canvas.height, width: canvas.width};
+        let data = { img: imgData, height: canvas.height, width: canvas.width };
         console.log(data);
-        axios.post('http://localhost:8080/img', data)
-            .then(res => {
-                console.log(res.data.data);
-                setCarbon(res.data.data.carbon);
-                setWaste(res.data.data.item);
-            })
-            .catch(err => console.log(err));
+        const res = await axios.post('http://localhost:5000/', data);
+        console.log(res.data[0]);
+        // setCarbon(res.data.data.carbon);
+        setWaste(res.data[0]);
     }
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    
+
     const { currentUser } = useAuth();
 
     useEffect(() => {
@@ -80,16 +77,16 @@ export default function PictureEm() {
                     <tr>
                         <td>
                             <form>
-                                <input type="file"  accept="image/*" name="image" id="file" onInput={imgUpload} />
-                                <br/>
+                                <input type="file" accept="image/*" name="image" id="file" onInput={imgUpload} />
+                                <br />
                                 <p>{src}</p>
-                                <br/>
+                                <br />
                                 <canvas id='canvas' height={0} width={0}></canvas>
-                                <br/>
-                                <button type="button" onClick={calcEm} className='submit-btn'>Find Emission</button>              
+                                <br />
+                                <button type="button" onClick={calcEm} className='submit-btn'>Find Emission</button>
                             </form>
                         </td>
-                        <td style={{width:'30%',}}>
+                        <td style={{ width: '30%', }}>
                             <h4>Your emissions</h4>
                             <p>Object: {waste}</p>
                             <h6>Carbon emission: {carbon} kgs</h6>
