@@ -31,14 +31,9 @@ def get_img_arr(image, height, width):
 
 
 def main(image,height, width):
+    global loaded_model
     x = get_img_arr(image,height, width)
     x = np.reshape(x, (1, 300, 300, 3))
-    json_file = open('app/model.json', 'r')
-    loaded_model_json = json_file.read()
-    json_file.close()
-    loaded_model = model_from_json(loaded_model_json)
-    loaded_model.load_weights("app/model.h5")
-    print("Loaded model from disk")
     preds = loaded_model.predict(x)
     objects = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
     preds = np.squeeze(preds)
@@ -68,3 +63,14 @@ def getPrice():
     List.append(ans)
     List.append(cat_dict[ans])
     return json.dumps(List)
+
+
+
+if __name__ == '__main__':
+    json_file = open('app/model.json', 'r')
+    loaded_model_json = json_file.read()
+    json_file.close()
+    loaded_model = model_from_json(loaded_model_json)
+    loaded_model.load_weights("app/model.h5")
+    print("Loaded model from disk")
+    app.run(debug=True, host='0.0.0.0', port=5000)
