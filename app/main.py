@@ -1,7 +1,4 @@
-import matplotlib.pyplot as plt
-from PIL import Image
 import tensorflow as tf
-import sys
 import json
 import numpy as np
 from keras.models import load_model
