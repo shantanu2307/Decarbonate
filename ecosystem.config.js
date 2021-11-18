@@ -1,5 +1,4 @@
 module.exports = {
-
   apps: [
     {
       name: "express-app",
@@ -12,7 +11,12 @@ module.exports = {
         NODE_ENV: "production",
       },
     },
+    {
+      name: "flask-app",
+      script: "app/main.py",
+      interpreter: "venv/bin/python3",
+      instances: 1
+    }
   ],
-
 
 };

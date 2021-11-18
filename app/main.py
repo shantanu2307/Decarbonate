@@ -73,4 +73,4 @@ if __name__ == '__main__':
     loaded_model = model_from_json(loaded_model_json)
     loaded_model.load_weights("app/model.h5")
     print("Loaded model from disk")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000,threaded=True)

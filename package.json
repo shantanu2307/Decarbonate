@@ -38,7 +38,7 @@
     "eject": "react-scripts eject",
     "serve": "pm2-runtime start ecosystem.config.js",
     "preinstall": "npm install -g pm2",
-    "dev": "concurrently \"npm run serve\" \"npm start\""
+    "dev": "concurrently \"npm run serve\" \"npm start\" "
   },
   "eslintConfig": {
     "extends": [
