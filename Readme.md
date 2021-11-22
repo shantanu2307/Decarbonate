@@ -9,8 +9,8 @@
 # To start the app:-
 	npm run dev
 
-### React will on localhost:3000
-### Express server will be on localhost:8080
-### Flask server will be on localhost:5000
+### React will be served on localhost:3000
+### Express server will be served on localhost:8080
+### Flask server will be served on localhost:5000
 
 
